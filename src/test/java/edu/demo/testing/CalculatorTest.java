@@ -20,4 +20,10 @@ class CalculatorTest {
     void two_sum_zero_is_two() {
         assertThat(calc.sum(2, 0)).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("Should return 4 given 2 & 2")
+    void two_sum_two_is_four() {
+        assertThat(calc.sum(2, 2)).isEqualTo(4);
+    }
 }
