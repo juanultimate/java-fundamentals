@@ -2,5 +2,5 @@
 `./gradlew clean test`
 
 **Running coverage**
-`./gradlew clean test jacocoTestReport
+`./gradlew clean test jacocoTestReport`
 `
