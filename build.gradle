@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    configurations.maybeCreate("pitest")
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.5'
+        pitest 'org.pitest:pitest-junit5-plugin:0.10'
+    }
+}
+
 plugins {
     id 'java'
     id 'idea'
@@ -6,7 +17,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '13'
+sourceCompatibility = '12'
 
 repositories {
     mavenCentral()
@@ -16,7 +27,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.1'
     testImplementation 'org.assertj:assertj-core:3.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
-
 }
 
 test {
@@ -26,3 +36,15 @@ test {
     }
 }
 
+apply plugin: "info.solidsoft.pitest"
+
+pitest {
+    pitestVersion = "1.4.9"
+    testPlugin = "junit5"
+    targetClasses = ['edu.demo.testing.*']  //by default "${project.group}.*"
+    targetTests = ['edu.demo.testing.*']
+    outputFormats = ['HTML']
+    timestampedReports = true
+    verbose = false
+    exportLineCoverage = false
+}
